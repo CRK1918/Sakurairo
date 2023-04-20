@@ -43,7 +43,7 @@ $reception_background = iro_opt('reception_background');
 							本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank"> <img alt="upyun-logo" src="https://s.nmxc.ltd/sakurairo_vision/@2.5/options/upyun_logo.webp"  style="display:inline-block;vertical-align:middle;width:60px;height:30px;"/> 提供 CDN 加速 / 云存储 服务
                         <?php endif; ?>
                         <br>
-						<a href="https://github.com/mirai-mamori/Sakurairo" rel="noopener" target="_blank" id="site-info" >Theme Sakurairo</a><a href="https://fuukei.org/" rel="noopener" target="_blank" id="site-info" > by Fuukei</a> 
+						<div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced"> Site Has Been Running For：<span id="htmer_time" class="item m-text-thin"></span> (*๓´╰╯`๓)  
 					</span>
 			</div>
 		</div><!-- .site-info -->
@@ -183,3 +183,44 @@ echo iro_opt('footer_addition', '');
 <script type="application/json" id="particles-js-cfg"><?=iro_opt('particles_json','')?></script>
 <?php endif; ?>
 </html>
+
+<script>
+// 运行时间统计
+function secondToDate(second) {
+    if (!second) {
+      return 0;
+    }
+    var time = new Array(0, 0, 0, 0, 0);
+    if (second >= 365 * 24 * 3600) {
+      time[0] = parseInt(second / (365 * 24 * 3600));
+      second %= 365 * 24 * 3600;
+    }
+    if (second >= 24 * 3600) {
+      time[1] = parseInt(second / (24 * 3600));
+      second %= 24 * 3600;
+    }
+    if (second >= 3600) {
+      time[2] = parseInt(second / 3600);
+      second %= 3600;
+    }
+    if (second >= 60) {
+      time[3] = parseInt(second / 60);
+      second %= 60;
+    }
+    if (second > 0) {
+      time[4] = second;
+    }
+    return time;
+  }
+  function setTime() {
+    /*此处为网站的创建时间*/
+    var create_time = Math.round(new Date(Date.UTC(2022, 6, 6, 0, 0, 0)).getTime() / 1000);
+    var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+    currentTime = secondToDate((timestamp - create_time));
+    currentTimeHtml = currentTime[0] + 'Year ' + currentTime[1] + 'Day '
+            + currentTime[2] + 'Hour ' + currentTime[3] + 'Minute ' + currentTime[4]
+            + 'Second ';
+    document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+  }
+  setInterval(setTime, 1000);
+</script>
