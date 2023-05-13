@@ -40,7 +40,7 @@ $reception_background = iro_opt('reception_background');
 							本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank"> <img alt="upyun-logo" src="https://s.nmxc.ltd/sakurairo_vision/@2.6/options/upyun_logo.webp"  style="display:inline-block;vertical-align:middle;width:60px;height:30px;"/> 提供 CDN 加速 / 云存储 服务
                         <?php endif; ?>
                         <br>
-						<div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced"> Site Has Been Running For：<span id="htmer_time" class="item m-text-thin"></span>  
+						<div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced"><a href="https://status.techssh.com/" rel="noreferrer noopener" target="_blank">→Site Uptime←：</a><span id="htmer_time" class="item m-text-thin"></span>  
 					</span>
 			</div>
 		</div><!-- .site-info -->
@@ -212,7 +212,7 @@ function secondToDate(second) {
     var create_time = Math.round(new Date(Date.UTC(2022, 6, 6, 0, 0, 0)).getTime() / 1000);
     var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
     currentTime = secondToDate((timestamp - create_time));
-    currentTimeHtml = currentTime[0] + 'Y ' + currentTime[1] + 'D '
+    currentTimeHtml = currentTime[0] + 'Y - ' + currentTime[1] + 'D - '
             + currentTime[2] + ': ' + currentTime[3] + ': ' + currentTime[4]
             + ' (*๓´╰╯`๓)  ';
     document.getElementById("htmer_time").innerHTML = currentTimeHtml;
