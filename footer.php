@@ -40,7 +40,7 @@ $reception_background = iro_opt('reception_background');
 							本网站由 <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank"> <img alt="upyun-logo" src="https://s.nmxc.ltd/sakurairo_vision/@2.6/options/upyun_logo.webp"  style="display:inline-block;vertical-align:middle;width:60px;height:30px;"/> 提供 CDN 加速 / 云存储 服务
                         <?php endif; ?>
                         <br>
-						<div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced"><a href="https://status.techssh.com/" rel="noreferrer noopener" target="_blank">→Site Uptime←：</a><span id="htmer_time" class="item m-text-thin"></span>  
+						<div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced"><a href="https://docs.fuukei.org/" rel="noreferrer noopener" target="_blank">→Site Uptime←：</a><span id="htmer_time" class="item m-text-thin">
 					</span>
 			</div>
 		</div><!-- .site-info -->
