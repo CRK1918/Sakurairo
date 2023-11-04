@@ -47,20 +47,6 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
       ),
 
       array(
-        'id'    => 'site_name',
-        'type'  => 'text',
-        'title' => __('Site Name','sakurairo_csf'),
-        'desc'   => __('For example: Sakurairo Blog','sakurairo_csf'),
-      ),
-
-      array(
-        'id'    => 'author_name',
-        'type'  => 'text',
-        'title' => __('Author Name','sakurairo_csf'),
-        'desc'   => __('For example: Fuukei','sakurairo_csf'),
-      ),
-
-      array(
         'id'    => 'personal_avatar',
         'type'  => 'upload',
         'title' => __('Personal Avatar','sakurairo_csf'),
@@ -388,7 +374,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'id'     => 'gfonts_api',
         'type'   => 'text',
         'title'  => __('Google Fonts Api Link','sakurairo_csf'),
-        'default' => 'fonts.geekzu.org'
+        'default' => 'cdn2.tianli0.top/fonts'
       ),
 
       array(
@@ -516,7 +502,6 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'type'  => 'switcher',
         'title' => __('Secondary Menu Prompt Arrow','sakurairo_csf'),
         'label'   => __('After turning on, the menu prompt arrow will appear in the secondary menu of the navigation menu','sakurairo_csf'),
-        'dependency' => array( 'nav_menu_style', '==', 'sakura', '', 'true' ),
         'default' => false
       ),
 
@@ -564,7 +549,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
             'id'    => 'text_secondary',
             'type'  => 'text',
             'title' => __('Secondary Text','sakurairo_csf'),
-            'dependency' => array( 'text_b', '!=', '' ),
+            'dependency' => array( 'text_b', '!=', '', '', 'true'  ),
           ),
           array(
             'id'    => 'font_name',
@@ -1624,7 +1609,10 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'type' => 'text',
         'title' => __('Webp Optimization/External API Desktop Side Random Graphics Address','sakurairo_csf'),
         'desc' => __('Fill in an URL','sakurairo_csf'),
-        'dependency' => array( 'cover_switch', '==', 'true', '', 'true' ),
+        'dependency' => array( 
+                              array( 'cover_switch', '==', 'true', '', 'true' ),
+                              array( 'random_graphs_options', '!=', 'local', '', 'true' ),
+                        ),
         'default' => 'https://api.maho.cc/random-img/pc.php',
         'sanitize' => false,
         'validate' => 'csf_validate_url',
@@ -1637,6 +1625,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'dependency' => array( 
                               array( 'random_graphs_mts', '==', 'true' ),
                               array( 'cover_switch', '==', 'true', '', 'true' ),
+                              array( 'random_graphs_options', '!=', 'local', '', 'true' ),
                         ),
         'desc' => __('Fill in an URL','sakurairo_csf'),
         'default' => 'https://api.maho.cc/random-img/mobile.php',
@@ -2678,7 +2667,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'id' => 'article_auto_toc',
         'type' => 'switcher',
         'title' => __('Article Page Auto Show Menu','sakurairo_csf'),
-        'label' => __('Enabled by default, the article page will automatically show the menu','sakurairo_csf'),
+        'label' => __('Enabled by default, the article page will automatically show the menu. PHP extension "DOM" is required for this feature.','sakurairo_csf'),
         'default' => true
       ),
 
@@ -2819,6 +2808,11 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
       ),
 
       array(
+        'type' => 'subheading',
+        'content' => __('Public Settings','sakurairo_csf'),
+      ),
+
+      array(
         'id' => 'page_temp_title_font_size',
         'type' => 'slider',
         'title' => __('Template Page Title Font Size','sakurairo_csf'),
@@ -2830,11 +2824,16 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
       ),
 
       array(
+        'type' => 'subheading',
+        'content' => __('ShuoShuo Template Settings','sakurairo_csf'),
+      ),
+
+      array(
         'id' => 'shuoshuo_background_color1',
         'type' => 'color',
         'title' => __('Ideas Template Background ColorⅠ','sakurairo_csf'),
         'desc' => __('Customize the colors','sakurairo_csf'),
-        'default' => '#F9D938'
+        'default' => 'rgba(255,224,102,0.2)'
       ),    
 
       array(
@@ -2842,7 +2841,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'type' => 'color',
         'title' => __('Ideas Template Background Color II','sakurairo_csf'),
         'desc' => __('Customize the colors','sakurairo_csf'),
-        'default' => '#FCCD00'
+        'default' => 'rgba(255,204,0,0.2)'
       ),    
 
       array(
@@ -2859,6 +2858,19 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'title' => __('Ideas Template Font','sakurairo_csf'),
         'desc' => __('Fill in the font name. For example: Noto Serif SC','sakurairo_csf'),
         'default' => 'Noto Serif SC'
+      ),
+
+      array(
+        'id' => 'shuoshuo_per_page',
+        'type' => 'text',
+        'title' => __('Number Of ShuoShuo','sakurairo_csf'),
+        'desc' => __('Enter a positive integer or "-1" to control the number of ShuoShuo displayed on each page. Enter "-1" to display all messages.','sakurairo_csf'),
+        'default'     => '5'
+      ),
+
+      array(
+        'type' => 'subheading',
+        'content' => __('Bangumi Template Settings','sakurairo_csf'),
       ),
 
 	  array(
@@ -2910,6 +2922,11 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'desc' => __('Fill in your account cookies, F12 to open your browser web panel, go to your bilibili homepage to get cookies. If left empty, it will not show the progress of catching up bangumis','sakurairo_csf'),
         'dependency' => array( 'bangumi_source', '==', 'bilibili', '', 'true' ),
         'default' => 'LIVE_BUVID='
+      ),
+
+      array(
+        'type' => 'subheading',
+        'content' => __('Friend Link Template Settings','sakurairo_csf'),
       ),
 
       array(
@@ -2968,6 +2985,11 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
       ),
 
       array(
+        'type' => 'subheading',
+        'content' => __('Login Template Settings','sakurairo_csf'),
+      ),
+
+      array(
         'id' => 'ex_register_open',
         'type' => 'switcher',
         'title' => __('Login Template Registration Function','sakurairo_csf'),
@@ -2988,6 +3010,11 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'type' => 'submessage',
         'style' => 'info',
         'content' => __('You can click <a href="https://docs.fuukei.org/Sakurairo/Pages/#%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE">here</a> to learn how to set the options on this page','sakurairo_csf'),
+      ),
+
+      array(
+        'type' => 'subheading',
+        'content' => __('Comment Area Style','sakurairo_csf'),
       ),
 
       array(
@@ -3019,19 +3046,59 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
       ),
 
       array(
-        'id' => 'comment_smile_bilibili',
-        'type' => 'switcher',
-        'title' => __('Page Comment Area Bilibili Emoji Pack','sakurairo_csf'),
-        'label' => __('Default on, bilibili emotions are displayed below the comment box','sakurairo_csf'),
-        'default' => true
-      ),
-
-      array(
         'id' => 'comment_area_image',
         'type' => 'upload',
         'title' => __('Page Comment Area Bottom Right Background Image','sakurairo_csf'),
         'desc' => __('If this option is blank, there will be no image, no best recommendation here','sakurairo_csf'),
         'library' => 'image',
+      ),
+
+      array(
+        'type' => 'subheading',
+        'content' => __('Comment Area Function','sakurairo_csf'),
+      ),
+
+      array(
+        'id'       => 'smilies_list',
+        'type'     => 'button_set',
+        'title' => __('Comment Area Emoticon','sakurairo_csf'),
+        'desc' => __('Select the emoticons to be displayed in the comment area input box. Uncheck all to turn off the comment input box emoticon function.','sakurairo_csf'),
+        'multiple' => true,
+        'options'  => array(
+          'bilibili'   => __('BiliBili Emoticon Pack','sakurairo_csf'),
+          'tieba'   => __('Baidu Tieba Emoticon Pack','sakurairo_csf'),
+          'yanwenzi' => __('Emoji','sakurairo_csf'),
+          'custom' => __('Customized Emoticon Pack','sakurairo_csf'),
+        ),
+        'default'  => array( 'bilibili', 'tieba', 'yanwenzi' )
+      ),
+
+      array(
+        'id'         => 'smilies_name',
+        'type'       => 'text',
+        'title' => __('Customized Emoticon Column Name','sakurairo_csf'),
+        'desc' => __('It is recommended to enter less than 4 Chinese characters in length to avoid causing compatibility issues on mobile terminals.','sakurairo_csf'),
+        'dependency' => array( 'smilies_list', 'any', 'custom', '', 'true' ),
+        'default' => 'custom'
+      ),
+    
+      array(
+        'id'         => 'smilies_dir',
+        'type'       => 'text',
+        'title' => __('Path To Custom Expression','sakurairo_csf'),
+        'desc' => __('Click <a href="./admin.php?update_custom_smilies=true" target="_blank">here</a> updating emoticon list. Specific usage reference: <a href="https://docs.fuukei.org/Sakurairo/Pages/#%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE" target="_blank">Comment related settings</a>','sakurairo_csf'),
+        'dependency' => array( 'smilies_list', 'any', 'custom', '', 'true' ),
+      ),
+
+      array(
+        'id'         => 'smilies_proxy',
+        'type'       => 'text',
+        'title' => __('Custom Emoticon Proxy Address','sakurairo_csf'),
+        'desc' => __('Fill in the CDN address of the emoticon image. If left blank, the CDN proxy function will not be enabled.','sakurairo_csf'),
+        'dependency' => array( 
+                              array('smilies_list', 'any', 'custom', '', 'true' ),
+                              array('smilies_dir', '!=', '', '', 'true'),
+                            ),
       ),
 
       array(
@@ -3155,7 +3222,13 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'type' => 'text',
         'title' => __('Comment Image Proxy','sakurairo_csf'),
         'desc' => __('Proxy for the image displayed on the frontend','sakurairo_csf'),
+        'dependency' => array( 'img_upload_api', '!=', 'off', '', 'true' ),
         'default' => 'https://images.weserv.nl/?url='
+      ),
+
+      array(
+        'type' => 'subheading',
+        'content' => __('Comment Email Notification','sakurairo_csf'),
       ),
 
       array(
@@ -3528,7 +3601,6 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
         'title' => __('Gravatar Service Proxy','sakurairo_csf'),
         'desc' => __('You can select multiple proxy as the Gravatar Service Proxy. By default, Tianli is used as the Gravatar Service Proxy.','sakurairo_csf'),
         'options'     => array(
-          'cdn2.tianli0.top/avatar'  => __('Tianli','sakurairo_csf'),
           'weavatar.com/avatar'  => __('Weavatar Service','sakurairo_csf'),
           'cravatar.cn/avatar'  => __('Cravatar Service','sakurairo_csf'),
           'sdn.geekzu.org/avatar'  => __('Geekzu','sakurairo_csf'),
@@ -3536,7 +3608,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
           'gravatar.com/avatar'  => __('Official','sakurairo_csf'),
           'custom_proxy_address_of_gravatar' => __('Custom Proxy Address','sakurairo_csf'),
         ),
-        'default'     => 'cdn2.tianli0.top/avatar'
+        'default'     => 'weavatar.com/avatar'
       ),
 
       array(
@@ -3937,7 +4009,7 @@ if( class_exists( 'Sakurairo_CSF' ) ) {
 
       array(
         'type'    => 'content',
-        'content' => __('<img src="https://img.shields.io/github/v/release/mirai-mamori/Sakurairo.svg?style=flat-square"  alt="Theme latest version" style="border-radius: 3px;" />  <img src="https://img.shields.io/github/release-date/mirai-mamori/Sakurairo?style=flat-square"  alt="Theme latest version release date" style="border-radius: 3px;" />  <img src="https://data.jsdelivr.com/v1/package/gh/Fuukei/Public_Repository/badge"  alt="Theme CDN resource access" style="border-radius: 3px;" />','sakurairo_csf'),
+        'content' => __('<img src="https://img.shields.io/github/v/release/mirai-mamori/Sakurairo.svg?style=flat-square"  alt="Theme latest version" style="border-radius: 3px;" />  <img src="https://img.shields.io/github/release-date/mirai-mamori/Sakurairo?style=flat-square"  alt="Theme latest version release date" style="border-radius: 3px;" />  <img src="https://data.jsdelivr.com/v1/package/gh/mirai-mamori/Sakurairo/badge"  alt="Theme CDN resource access" style="border-radius: 3px;" />','sakurairo_csf'),
       ),
 
     )
