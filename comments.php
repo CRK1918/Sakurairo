@@ -58,7 +58,7 @@
 					$private_ms = iro_opt('comment_private_message') ? '<label class="siren-checkbox-label"><input class="siren-checkbox-radio" type="checkbox" name="is-private"><span class="siren-is-private-checkbox siren-checkbox-radioInput"></span>'.__('Comment in private', 'sakurairo').'</label>' : '';
 					$mail_notify = iro_opt('mail_notify') ? '<label class="siren-checkbox-label"><input class="siren-checkbox-radio" type="checkbox" name="mail-notify"><span class="siren-mail-notify-checkbox siren-checkbox-radioInput"></span>'.__('Comment reply notify', 'sakurairo').'</label>' : '';
 					$bilibili_smile = !iro_opt('comment_smile_bilibili') ? '' : '<th onclick="motionSwitch(\'.bili\')" 
-					class="bili-bar on-hover">bilibili~</th>';
+					class="bili-bar on-hover">White emoticon</th>';
 					$bilibili_push_smile = !iro_opt('comment_smile_bilibili') ? '<div class="menhera-container motion-container">' :'<div class="bili-container motion-container">' . push_bili_smilies() . '</div><div class="menhera-container motion-container" style="display:none;">';
 					$args = array(
 						'id_form' => 'commentform',
@@ -80,7 +80,7 @@
                                     <th onclick="motionSwitch(\'.menhera\')"
                                         class="menhera-bar">(=・ω・=)</th>
                                     <th onclick="motionSwitch(\'.tieba\')"
-                                        class="tieba-bar">Tieba</th>
+                                        class="tieba-bar">Yellow emoji</th>
                                 </tr>
                             </table>
                             '.$bilibili_push_smile.push_emoji_panel().'
