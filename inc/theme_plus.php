@@ -144,7 +144,7 @@ if(!function_exists('siren_ajax_comment_err')) {
 // 机器评论验证
 function siren_robot_comment(){
   if ( !$_POST['no-robot'] && !is_user_logged_in()) {
-     siren_ajax_comment_err('上车请刷卡。<br>Please comfirm you are not a robot.');
+     siren_ajax_comment_err('谢啦!!☆⌒(*＾-゜)v。<br>Please comfirm you are not a robot.');
   }
 }
 if(iro_opt('not_robot')) add_action('pre_comment_on_post', 'siren_robot_comment');
